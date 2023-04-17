@@ -25,6 +25,19 @@ public class Brad09 {
 		}
 		
 		System.out.printf("%d年為%s年", year, (isLeap?"閏":"平"));
+		
+		//--------------
+		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0 ) {
+			// 閏
+		}else {
+			// 平
+		}
+		
+		
+		
+		
+		
+		
 	}
 
 }
