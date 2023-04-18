@@ -1,5 +1,7 @@
 package tw.org.iii.tutor;
 
+import java.util.Arrays;
+
 public class PokerV2 {
 
 	public static void main(String[] args) {
@@ -11,10 +13,18 @@ public class PokerV2 {
 			players[i%4][i/4] = poker[i];
 		}
 		
+		String[] suits = {"黑桃","紅心","方塊","梅花"};
+		String[] values = {"A ","2 ","3 ","4 ","5 ","6 ",
+				"7 ","8 ","9 ","10","J ","Q ","K "};
+		
 		for (int[] player : players) {
+			Arrays.sort(player);
+			reverseArray(player);
 			for (int card : player) {
-				System.out.print(card + " ");
+				//System.out.print(suits[card/13]+ values[card%13] + " ");
+				System.out.printf("%s%s ", suits[card/13], values[card%13]);
 			}
+			// %d %s %f
 			System.out.println();
 		}
 		
@@ -48,7 +58,13 @@ public class PokerV2 {
 		return poker;
 	}
 	
-	
+	static void reverseArray(int[] validData) {
+		for(int i = 0; i < validData.length / 2; i++){
+		    int temp = validData[i];
+		    validData[i] = validData[validData.length - i - 1];
+		    validData[validData.length - i - 1] = temp;
+		}
+	}
 	
 
 }
