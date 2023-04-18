@@ -3,7 +3,7 @@ package tw.org.iii.tutor;
 public class PokerV2 {
 
 	public static void main(String[] args) {
-		int[] poker = shuffle();
+		int[] poker = shuffle(52);
 		// 發牌
 		
 		int[][] players = new int[4][13];
@@ -11,13 +11,18 @@ public class PokerV2 {
 			players[i%4][i/4] = poker[i];
 		}
 		
-		
+		for (int[] player : players) {
+			for (int card : player) {
+				System.out.print(card + " ");
+			}
+			System.out.println();
+		}
 		
 	}
 	
-	static int[] shuffle() {
+	static int[] shuffle(int num) {
 		// 1. 洗牌
-		int count = 52;
+		int count = num;
 		int[] poker = new int[count];
 		boolean isRepeat;
 		int temp;
@@ -37,9 +42,9 @@ public class PokerV2 {
 			}while (isRepeat);
 			
 			poker[i] = temp;
-			System.out.println(poker[i]);
+			//System.out.println(poker[i]);
 		}
-		System.out.println("---");
+		//System.out.println("---");
 		return poker;
 	}
 	
