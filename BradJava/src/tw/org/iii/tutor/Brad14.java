@@ -17,7 +17,10 @@ public class Brad14 {
 		for (int i=0; i<b.length; i++) {
 			System.out.println(b[i]);
 		}
-		
+		System.out.println("---");
+		System.out.println(a);
+		System.out.println(b);
+		System.out.println(b[0]);
 	}
 
 }
