@@ -5,26 +5,26 @@ public class PokerV2 {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
 		// 1. 洗牌
-		int count = 52;
+		int count = 10;
 		int[] poker = new int[count];
+		boolean isRepeat;
+		int temp;
 		for (int i=0; i<poker.length; i++) {
-			int temp = (int)(Math.random()*count);
-			
-			// 檢查機制
-			boolean isRepeat = false;
-			for (int j=0; j<i; j++) {
-				if (temp == poker[j]) {
-					// 重複了
-					isRepeat = true;
-					break;
+			do {
+				temp = (int)(Math.random()*count);
+				
+				// 檢查機制
+				isRepeat = false;
+				for (int j=0; j<i; j++) {
+					if (temp == poker[j]) {
+						// 重複了
+						isRepeat = true;
+						break;
+					}
 				}
-			}
+			}while (isRepeat);
 			
-			if (!isRepeat) {
-				poker[i] = temp;
-			}else {
-				i--;
-			}
+			poker[i] = temp;
 		}
 		
 		for (int v: poker) {
