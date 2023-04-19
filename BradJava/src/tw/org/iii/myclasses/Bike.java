@@ -1,7 +1,17 @@
 package tw.org.iii.myclasses;
 
-public class Bike {
+public class Bike extends Object{
 	protected double speed;
+	private String color;
+	
+	public Bike() {
+		System.out.println("Bike()");
+		color = "yellow";
+	}
+	
+	public String getColor() {
+		return color;
+	}
 	
 	public void upSpeed() {
 		speed = speed < 1 ? 1 : speed * 1.2;

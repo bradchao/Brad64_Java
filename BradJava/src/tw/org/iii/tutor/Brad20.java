@@ -11,6 +11,8 @@ public class Brad20 {
 		System.out.println(s1.getSpeed());
 		s1.downSpeed();
 		System.out.println(s1.getSpeed());
+		
+		
 	}
 
 }
