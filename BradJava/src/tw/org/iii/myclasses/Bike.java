@@ -6,6 +6,10 @@ public class Bike extends Object{
 	
 	public Bike() {
 		System.out.println("Bike()");
+		setColor();
+	}
+	
+	private void setColor() {
 		color = "yellow";
 	}
 	
