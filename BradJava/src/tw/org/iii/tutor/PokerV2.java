@@ -75,7 +75,8 @@ public class PokerV2 {
 		for (int i=0; i<13; i++) {
 			for (int j=0; j<mycards.length; j++) {
 				if (mycards[j] % 13 == i) {
-					temp[counter++] = mycards[j];
+					temp[counter] = mycards[j];
+					counter++;
 				}
 			}
 		}
