@@ -19,8 +19,11 @@ public class PokerV2 {
 		
 		for (int[] player : players) {
 			Arrays.sort(player);
-			reverseArray(player);
-			for (int card : player) {
+			//reverseArray(player);
+			
+			int[] cards = pairSort(player);
+			
+			for (int card : cards) {
 				//System.out.print(suits[card/13]+ values[card%13] + " ");
 				System.out.printf("%s%s ", suits[card/13], values[card%13]);
 			}
@@ -66,5 +69,18 @@ public class PokerV2 {
 		}
 	}
 	
+	static int[] pairSort(int[] mycards) {
+		int[] temp = new int[mycards.length];
+		int counter = 0;
+		for (int i=0; i<13; i++) {
+			for (int j=0; j<mycards.length; j++) {
+				if (mycards[j] % 13 == i) {
+					temp[counter++] = mycards[j];
+				}
+			}
+		}
+		
+		return temp;
+	}
 
 }
