@@ -24,7 +24,7 @@ public class TWId {
 		String temp = sb.toString();
 		for (int i=0; i<10; i++) {
 			if (checkId(temp + i)) {
-				id = temp + 1;
+				id = temp + i;
 				break;
 			}
 		}
