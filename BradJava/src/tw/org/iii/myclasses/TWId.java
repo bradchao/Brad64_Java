@@ -2,20 +2,40 @@ package tw.org.iii.myclasses;
 
 public class TWId {
 	private String id;
+	private static String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
+	
 	public TWId() {
-		
+		this((int)(Math.random()*2) == 0);
 	}
 	public TWId(boolean isMale) {
-		
+		this(isMale, (int)(Math.random()*26));
 	}
 	public TWId(int area) {
-		
+		this((int)(Math.random()*2) == 0, area);
 	}
 	public TWId(boolean isMale, int area) {
+		String c1 = letters.substring(area, area+1);
+		StringBuilder sb = new StringBuilder(c1);
+		sb.append(isMale?"1":"2");
+		for (int i=0; i<7; i++) {
+			sb.append((int)(Math.random()*10));
+		}
+		
+		String temp = sb.toString();
+		for (int i=0; i<10; i++) {
+			if (checkId(temp + i)) {
+				id = temp + 1;
+				break;
+			}
+		}
 		
 	}
 	private TWId(String myid) {
 		
+	}
+	
+	public String getId() {
+		return id;
 	}
 	
 	public static boolean checkId(String id) {
@@ -25,7 +45,6 @@ public class TWId {
 		// 4. c3-10 => 0 - 9
 		boolean isRight = false;
 		if (id.matches("[A-Z][1289][0-9]{8}")) {
-			String letters = "ABCDEFGHJKLMNPQRSTUVXYWZIO";
 			char c1 = id.charAt(0);
 			int n12 = letters.indexOf(c1) + 10;
 			int n1 = n12 / 10;
