@@ -5,8 +5,8 @@ import tw.org.iii.myclasses.*;
 public class Brad23 {
 
 	public static void main(String[] args) {
-		String id = "A123457777";
-		if (id.matches("[ABC][12][0-9]{4}7{4}")) {
+		String id = "A123456789";
+		if (TWId.checkId(id)) {
 			System.out.println("OK");
 		}else {
 			System.out.println("XX");
