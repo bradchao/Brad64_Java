@@ -23,6 +23,9 @@ public class Brad23 {
 		System.out.println(id3.getId());
 		System.out.println(id4.getId());
 		
+		TWId id5 = TWId.createTWId("A123456789");
+		System.out.println(id5.getId());
+		
 		
 		
 		

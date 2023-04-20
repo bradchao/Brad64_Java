@@ -5,7 +5,7 @@ public class Bike extends Object{
 	private String color;
 	
 	public Bike() {
-		System.out.println("Bike()");
+		//System.out.println("Bike()");
 		setColor();
 	}
 	
@@ -28,4 +28,10 @@ public class Bike extends Object{
 	public double getSpeed() {
 		return speed;
 	}
+
+	public String toString() {
+		return "Bike:" + speed;
+	}
+	
+	
 }

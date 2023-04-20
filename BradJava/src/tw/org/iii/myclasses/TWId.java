@@ -30,8 +30,16 @@ public class TWId {
 		}
 		
 	}
-	private TWId(String myid) {
-		
+	private TWId(String id) {
+		this.id = id;
+	}
+	
+	public static TWId createTWId(String id) {
+		TWId twId = null;
+		if (checkId(id)) {
+			twId = new TWId(id);
+		}
+		return twId;
 	}
 	
 	public String getId() {
