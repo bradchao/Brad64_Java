@@ -54,7 +54,16 @@ public class GNum extends JFrame implements ActionListener {
 	}
 
 	private String checkAB(String g) {
-		return "1A2B";
+		int A, B; A = B = 0;
+		for (int i=0; i<g.length(); i++) {
+			char c = g.charAt(i);
+			if (c == answer.charAt(i)) {
+				A++;
+			}else if (c 是否存在於 answer) {
+				B++;
+			}
+		}
+		return String.format("%dA%dB", A, B);
 	}
 	private String createAnswer(int n) {
 		int num = 10;
