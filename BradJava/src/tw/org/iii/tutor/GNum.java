@@ -1,6 +1,8 @@
 package tw.org.iii.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class GNum extends JFrame {
+public class GNum extends JFrame implements ActionListener {
 	private JButton guess;
 	private JTextField input;
 	private JTextArea log;
@@ -29,7 +31,7 @@ public class GNum extends JFrame {
 		add(log, BorderLayout.CENTER);
 		
 		
-		
+		guess.addActionListener(this);
 		
 		
 		
@@ -40,5 +42,41 @@ public class GNum extends JFrame {
 	public static void main(String[] args) {
 		new GNum();
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String strInput = input.getText();
+		log.append(createAnswer(5) + "\n");
+		
+	}
 
+	
+	private String createAnswer(int n) {
+		int num = 10;
+		int[] poker = new int[num];
+		for (int i = 0; i<poker.length; i++) poker[i] = i;
+		
+		for (int i = num-1; i > 0; i--) {
+			int rand = (int)(Math.random()*(i+1));
+			// poker[rand] <=> poker[i]
+			int temp = poker[rand];
+			poker[rand] = poker[i];
+			poker[i] = temp;
+		}
+		
+		StringBuffer sb = new StringBuffer();
+		for (int i=0; i<n; i++) {
+			sb.append(poker[i]);
+		}
+		
+		return sb.toString();
+	}
+	
 }
+
+class MyListener implements ActionListener {
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("OK");
+	}
+}
+
