@@ -14,6 +14,7 @@ public class GNum extends JFrame implements ActionListener {
 	private JButton guess;
 	private JTextField input;
 	private JTextArea log;
+	private String answer;
 	
 	public GNum() {
 		super("猜數字遊戲");
@@ -38,6 +39,8 @@ public class GNum extends JFrame implements ActionListener {
 		setSize(640, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		answer = createAnswer(3);
 	}
 	public static void main(String[] args) {
 		new GNum();
@@ -45,11 +48,14 @@ public class GNum extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String strInput = input.getText();
-		log.append(createAnswer(5) + "\n");
-		
+		String result = checkAB(strInput);
+		log.append(strInput + " => " + result + "\n");
+		input.setText("");
 	}
 
-	
+	private String checkAB(String g) {
+		return "1A2B";
+	}
 	private String createAnswer(int n) {
 		int num = 10;
 		int[] poker = new int[num];
