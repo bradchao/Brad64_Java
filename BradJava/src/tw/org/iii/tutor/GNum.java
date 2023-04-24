@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -15,6 +16,7 @@ public class GNum extends JFrame implements ActionListener {
 	private JTextField input;
 	private JTextArea log;
 	private String answer;
+	private int counter;
 	
 	public GNum() {
 		super("猜數字遊戲");
@@ -31,26 +33,44 @@ public class GNum extends JFrame implements ActionListener {
 		add(top, BorderLayout.NORTH);
 		add(log, BorderLayout.CENTER);
 		
-		
 		guess.addActionListener(this);
-		
-		
 		
 		setSize(640, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		answer = createAnswer(3);
+		newGame();
 	}
 	public static void main(String[] args) {
 		new GNum();
 	}
+	
+	private void newGame() {
+		answer = createAnswer(3);
+		//System.out.println("answer = " + answer);
+		log.setText("");
+		input.setText("");
+		counter = 0;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		counter++;
+		
 		String strInput = input.getText();
 		String result = checkAB(strInput);
-		log.append(strInput + " => " + result + "\n");
+		log.append(String.format(
+			"%d. %s => %s \n", counter, strInput, result));
 		input.setText("");
+		
+		if (result.equals("3A0B")) {
+			JOptionPane.showMessageDialog(null, "恭喜老爺");
+			newGame();
+		}else if (counter == 10) {
+			JOptionPane.showMessageDialog(null, "魯蛇: answer = " + answer);
+			newGame();
+		}
+		
 	}
 
 	private String checkAB(String g) {
@@ -59,7 +79,7 @@ public class GNum extends JFrame implements ActionListener {
 			char c = g.charAt(i);
 			if (c == answer.charAt(i)) {
 				A++;
-			}else if (c 是否存在於 answer) {
+			}else if (answer.indexOf(c) >= 0) {
 				B++;
 			}
 		}
