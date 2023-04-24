@@ -1,6 +1,7 @@
 package tw.org.iii.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +35,8 @@ public class GNum extends JFrame implements ActionListener {
 		add(log, BorderLayout.CENTER);
 		
 		guess.addActionListener(this);
-		
+
+		initView();
 		setSize(640, 480);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,6 +45,11 @@ public class GNum extends JFrame implements ActionListener {
 	}
 	public static void main(String[] args) {
 		new GNum();
+	}
+	
+	private void initView() {
+		input.setFont(new Font(null, Font.BOLD, 24));
+		log.setFont(new Font(null, Font.BOLD|Font.ITALIC, 20));
 	}
 	
 	private void newGame() {
@@ -55,24 +62,31 @@ public class GNum extends JFrame implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		counter++;
-		
 		String strInput = input.getText();
-		String result = checkAB(strInput);
-		log.append(String.format(
-			"%d. %s => %s \n", counter, strInput, result));
-		input.setText("");
 		
-		if (result.equals("3A0B")) {
-			JOptionPane.showMessageDialog(null, "恭喜老爺");
-			newGame();
-		}else if (counter == 10) {
-			JOptionPane.showMessageDialog(null, "魯蛇: answer = " + answer);
-			newGame();
+		if (isValid(strInput)) {
+			counter++;
+			
+			String result = checkAB(strInput);
+			log.append(String.format(
+				"%d. %s => %s \n", counter, strInput, result));
+			input.setText("");
+			
+			if (result.equals("3A0B")) {
+				JOptionPane.showMessageDialog(null, "恭喜老爺");
+				newGame();
+			}else if (counter == 10) {
+				JOptionPane.showMessageDialog(null, "魯蛇: answer = " + answer);
+				newGame();
+			}
 		}
-		
 	}
 
+	private boolean isValid(String g) {
+		
+		return true;
+	}
+	
 	private String checkAB(String g) {
 		int A, B; A = B = 0;
 		for (int i=0; i<g.length(); i++) {
