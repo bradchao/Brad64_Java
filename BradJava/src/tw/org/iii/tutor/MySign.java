@@ -10,15 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import tw.org.iii.myclasses.MyDrawer;
+import tw.org.iii.myclasses.MyDrawerV2;
 
 public class MySign extends JFrame{
-	private MyDrawer myDrawer;
+	private MyDrawerV2 myDrawer;
 	private JButton clear, undo, redo;
 	
 	public MySign() {
 		super("簽名");
 	
-		myDrawer = new MyDrawer();
+		myDrawer = new MyDrawerV2();
 		setLayout(new BorderLayout());
 		add(myDrawer, BorderLayout.CENTER);
 		
