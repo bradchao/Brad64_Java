@@ -27,6 +27,14 @@ public class MyDrawerV2 extends JPanel {
 		addMouseMotionListener(myListener);
 	}
 	
+	public Color getColor() {
+		return nowColor;
+	}
+	
+	public void setColor(Color color) {
+		nowColor = color;
+	}
+	
 	public void clear() {
 		lines.clear();
 		repaint();

@@ -1,20 +1,21 @@
 package tw.org.iii.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import tw.org.iii.myclasses.MyDrawer;
 import tw.org.iii.myclasses.MyDrawerV2;
 
 public class MySign extends JFrame{
 	private MyDrawerV2 myDrawer;
-	private JButton clear, undo, redo;
+	private JButton clear, undo, redo, chColor;
 	
 	public MySign() {
 		super("簽名");
@@ -26,9 +27,11 @@ public class MySign extends JFrame{
 		clear = new JButton("Clear");
 		undo = new JButton("Undo");
 		redo = new JButton("Redo");
+		chColor = new JButton("Color");
 		
 		JPanel top = new JPanel(new FlowLayout());
 		top.add(clear); top.add(undo); top.add(redo);
+		top.add(chColor);
 		
 		add(top, BorderLayout.NORTH);
 		
@@ -54,9 +57,24 @@ public class MySign extends JFrame{
 			}
 		});
 		
+		chColor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				changeColor();
+			}
+		});
+		
 		setSize(800, 640);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	private void changeColor() {
+		Color newColor = JColorChooser.showDialog(
+			null, "Change Color", myDrawer.getColor());
+		if (newColor != null) {
+			myDrawer.setColor(newColor);
+		}
 	}
 
 	public static void main(String[] args) {
