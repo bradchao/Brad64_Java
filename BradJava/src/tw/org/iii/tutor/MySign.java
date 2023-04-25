@@ -12,15 +12,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import tw.org.iii.myclasses.MyDrawerV2;
+import tw.org.iii.myclasses.MyDrawerV3;
 
 public class MySign extends JFrame{
-	private MyDrawerV2 myDrawer;
+	private MyDrawerV3 myDrawer;
 	private JButton clear, undo, redo, chColor;
 	
 	public MySign() {
 		super("簽名");
 	
-		myDrawer = new MyDrawerV2();
+		myDrawer = new MyDrawerV3();
 		setLayout(new BorderLayout());
 		add(myDrawer, BorderLayout.CENTER);
 		
@@ -70,11 +71,13 @@ public class MySign extends JFrame{
 	}
 	
 	private void changeColor() {
+		/*
 		Color newColor = JColorChooser.showDialog(
 			null, "Change Color", myDrawer.getColor());
 		if (newColor != null) {
 			myDrawer.setColor(newColor);
 		}
+		*/
 	}
 
 	public static void main(String[] args) {
