@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Brad53 {
 	public static void main(String[] args) {
-		String data = "Hello\n";
+		String data = "Hello, 你好嗎\n";
 		try {
 			FileOutputStream fout = 
 					new FileOutputStream("dir1/file2.txt", true);
