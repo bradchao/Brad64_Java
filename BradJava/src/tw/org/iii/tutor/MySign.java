@@ -17,6 +17,7 @@ import tw.org.iii.myclasses.MyDrawerV3;
 public class MySign extends JFrame{
 	private MyDrawerV3 myDrawer;
 	private JButton clear, undo, redo, chColor;
+	private JButton saveObj, loadObj;
 	
 	public MySign() {
 		super("簽名");
@@ -29,10 +30,12 @@ public class MySign extends JFrame{
 		undo = new JButton("Undo");
 		redo = new JButton("Redo");
 		chColor = new JButton("Color");
+		saveObj = new JButton("Save Obj");
+		loadObj = new JButton("Load Obj");
 		
 		JPanel top = new JPanel(new FlowLayout());
 		top.add(clear); top.add(undo); top.add(redo);
-		top.add(chColor);
+		top.add(chColor); top.add(saveObj); top.add(loadObj);
 		
 		add(top, BorderLayout.NORTH);
 		
@@ -64,6 +67,21 @@ public class MySign extends JFrame{
 				changeColor();
 			}
 		});
+		
+		saveObj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+
+		loadObj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		
 		setSize(800, 640);
 		setVisible(true);

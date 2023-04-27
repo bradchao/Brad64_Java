@@ -6,6 +6,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -42,6 +46,31 @@ public class MyDrawerV3 extends JPanel {
 		if (recycleBin.size() > 0) {
 			lines.add(recycleBin.removeLast());
 			repaint();
+		}
+	}
+	
+	public boolean saveLines(String fname) {
+		try (FileOutputStream fin = new FileOutputStream(fname);
+				ObjectOutputStream oout = new ObjectOutputStream(fin)){
+			oout.writeObject(lines);
+			oout.flush();
+			return true;
+		}catch(Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	}
+	
+	public boolean loadLines(String fname) {
+		try (ObjectInputStream oin = 
+			new ObjectInputStream(
+				new FileInputStream(fname))){
+			lines = (LinkedList<LinkedList<HashMap<String, Integer>>>)oin.readObject();
+			repaint();
+			recycleBin.clear();
+			return true;
+		}catch(Exception e) {
+			return false;
 		}
 	}
 	
