@@ -71,14 +71,14 @@ public class MySign extends JFrame{
 		saveObj.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				saveObject();
 			}
 		});
 
 		loadObj.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				loadObject();
 			}
 		});
 		
@@ -96,6 +96,14 @@ public class MySign extends JFrame{
 			myDrawer.setColor(newColor);
 		}
 		*/
+	}
+	
+	private void saveObject() {
+		myDrawer.saveLines("dir1/lines");
+	}
+	
+	private void loadObject() {
+		myDrawer.loadLines("dir1/lines");
 	}
 
 	public static void main(String[] args) {
