@@ -5,9 +5,11 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -99,11 +101,19 @@ public class MySign extends JFrame{
 	}
 	
 	private void saveObject() {
-		myDrawer.saveLines("dir1/lines");
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+			File file = jfc.getSelectedFile();
+			myDrawer.saveLines(file.getAbsolutePath());
+		}
 	}
 	
 	private void loadObject() {
-		myDrawer.loadLines("dir1/lines");
+		JFileChooser jfc = new JFileChooser();
+		if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			File file = jfc.getSelectedFile();
+			myDrawer.loadLines(file.getAbsolutePath());
+		}
 	}
 
 	public static void main(String[] args) {

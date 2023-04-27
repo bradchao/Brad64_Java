@@ -70,6 +70,7 @@ public class MyDrawerV3 extends JPanel {
 			recycleBin.clear();
 			return true;
 		}catch(Exception e) {
+			System.out.println(e);
 			return false;
 		}
 	}
