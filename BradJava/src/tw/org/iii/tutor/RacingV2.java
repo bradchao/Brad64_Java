@@ -8,13 +8,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Racing extends JFrame{
+public class RacingV2 extends JFrame{
 	private JButton go;
 	private JLabel[] lanes;
 	private Car[] cars;
 	private int rank;
 	
-	public Racing() {
+	public RacingV2() {
 		super("Racing");
 		
 		setLayout(new GridLayout(9, 1));
@@ -39,6 +39,7 @@ public class Racing extends JFrame{
 	}
 	
 	private void go() {
+		rank = 0;
 		go.setEnabled(false);
 		for (int i=0; i<lanes.length; i++) lanes[i].setText((i+1) + ". ");
 		cars = new Car[8];
@@ -46,7 +47,6 @@ public class Racing extends JFrame{
 			cars[i] = new Car(i);
 			cars[i].start();
 		}
-		rank = 0;
 	}
 	
 	private class Car extends Thread {
@@ -58,18 +58,26 @@ public class Racing extends JFrame{
 				lanes[lane].setText(lanes[lane].getText() + ">" 
 						+ ((i==99)?++rank:""));
 				
-				if (rank == 8) go.setEnabled(true);
+				if (rank == 1) finish(); 
 				
 				try {
 					Thread.sleep(10 + (int)(Math.random()*200));
 				} catch (InterruptedException e) {
+					break;
 				}
 			}
 		}
 	}
 	
+	private void finish() {
+		for (Car car : cars) {
+			car.interrupt();
+		}
+		go.setEnabled(true);
+	}
+	
 	public static void main(String[] args) {
-		new Racing();
+		new RacingV2();
 	}
 
 }

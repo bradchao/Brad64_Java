@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import tw.org.iii.myclasses.MyClock;
 import tw.org.iii.myclasses.MyDrawerV2;
 import tw.org.iii.myclasses.MyDrawerV3;
 
@@ -20,6 +21,7 @@ public class MySign extends JFrame{
 	private MyDrawerV3 myDrawer;
 	private JButton clear, undo, redo, chColor;
 	private JButton saveObj, loadObj, saveJPEG;
+	private MyClock myClock;
 	
 	public MySign() {
 		super("簽名");
@@ -35,11 +37,13 @@ public class MySign extends JFrame{
 		saveObj = new JButton("Save Obj");
 		loadObj = new JButton("Load Obj");
 		saveJPEG = new JButton("Save JPEG");
+		myClock = new MyClock();
 		
 		JPanel top = new JPanel(new FlowLayout());
 		top.add(clear); top.add(undo); top.add(redo);
 		top.add(chColor); top.add(saveObj); top.add(loadObj);
 		top.add(saveJPEG);
+		top.add(myClock);
 		
 		add(top, BorderLayout.NORTH);
 		
