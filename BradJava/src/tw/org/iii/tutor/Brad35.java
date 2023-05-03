@@ -8,6 +8,7 @@ public class Brad35 {
 	public static void main(String[] args) {
 		HashSet set = new HashSet();
 		set.add("Brad");
+		
 		set.add(new Bike());
 		set.add(123);	// 123 => auto-boxing
 		set.add("Brad");
