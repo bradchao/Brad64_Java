@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
 
+import org.json.JSONStringer;
+import org.json.JSONWriter;
+
 public class JDBC12 {
 	private static final String USER = "root";
 	private static final String PASSWORD = "root";
@@ -17,7 +20,7 @@ public class JDBC12 {
 			+ "from orders o "
 			+ "join employees e on (o.EmployeeID = e.EmployeeID) "
 			+ "join orderdetails od on (o.OrderID = od.OrderID) "
-			+ "GROUP by e.EmployeeID "
+			+ "GROUP by e.FirstName, e.LastName "
 			+ "ORDER by sum desc";
 		
 		Properties prop = new Properties();
@@ -26,9 +29,27 @@ public class JDBC12 {
 			Connection conn = DriverManager.getConnection(URL, prop);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
+
+			JSONStringer js = new JSONStringer();
+			JSONWriter jw = js.array();
+			int rank = 1;
 			while (rs.next()) {
-				System.out.println(rs.getString("Firstname") + ":" + rs.getString("sum"));
+				String firstName = rs.getString("Firstname");
+				String lastName = rs.getString("Lastname");
+				double sum = rs.getDouble("sum");
+				
+				jw.object();
+				jw.key("rank").value(rank++);
+				jw.key("firstname").value(firstName);
+				jw.key("lasttname").value(lastName);
+				jw.key("sum").value(sum);
+				jw.endObject();
+				
 			}
+			jw.endArray();
+			
+			System.out.println(jw.toString());
+			
 			
 		}catch(Exception e) {
 			System.out.println(e);
