@@ -1,18 +1,34 @@
 package tw.org.iii.tutor;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import tw.org.iii.myclasses.MyTable;
 
 public class JDBC18 extends JFrame{
 	private MyTable myTable;
+	private JButton del;
 	
 	public JDBC18() {
 		
 		setLayout(new BorderLayout());
+		JPanel top = new JPanel(new FlowLayout());
+		del = new JButton("Del");
+		top.add(del);
+		add(top, BorderLayout.NORTH);
+		del.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {				// TODO Auto-generated method stub
+				delData();
+			}
+		});
 		
 		try {
 			myTable = new MyTable();
@@ -25,6 +41,10 @@ public class JDBC18 extends JFrame{
 		}catch(Exception e) {
 			System.exit(123);
 		}
+	}
+	
+	private void delData() {
+		
 	}
 	
 	public static void main(String[] args) {

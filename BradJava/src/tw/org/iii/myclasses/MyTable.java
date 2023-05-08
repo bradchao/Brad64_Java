@@ -13,6 +13,7 @@ public class MyTable extends JTable {
 		
 		myModel = new MyModel();
 		setModel(myModel);
+		myModel.setColumnIdentifiers(foodDB.getHeader());
 	}
 	
 	private class MyModel extends DefaultTableModel {
@@ -35,8 +36,7 @@ public class MyTable extends JTable {
 
 		@Override
 		public boolean isCellEditable(int row, int column) {
-			// TODO Auto-generated method stub
-			return super.isCellEditable(row, column);
+			return column > 0;
 		}
 
 		@Override
@@ -46,8 +46,7 @@ public class MyTable extends JTable {
 
 		@Override
 		public void setValueAt(Object aValue, int row, int column) {
-			// TODO Auto-generated method stub
-			super.setValueAt(aValue, row, column);
+			foodDB.updateData(row + 1, column + 1, (String)aValue);
 		}
 		
 	}
