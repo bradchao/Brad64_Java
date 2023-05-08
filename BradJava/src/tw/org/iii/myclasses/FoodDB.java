@@ -39,6 +39,16 @@ public class FoodDB {
 		}
 	}
 	
+	// 1-base
+	public void delRow(int row) {
+		try {
+			rs.absolute(row);
+			rs.deleteRow();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	public String[] getHeader() {
 		return fieldNames;
 	}

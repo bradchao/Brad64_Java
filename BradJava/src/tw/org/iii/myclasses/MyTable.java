@@ -16,13 +16,17 @@ public class MyTable extends JTable {
 		myModel.setColumnIdentifiers(foodDB.getHeader());
 	}
 	
+	public void delRow() {
+		myModel.removeRow(getSelectedRow());
+		repaint();
+	}
+	
 	private class MyModel extends DefaultTableModel {
 
-//		@Override
-//		public void removeRow(int row) {
-//			// TODO Auto-generated method stub
-//			super.removeRow(row);
-//		}
+		@Override
+		public void removeRow(int row) {
+			foodDB.delRow(row + 1);
+		}
 
 		@Override
 		public int getRowCount() {

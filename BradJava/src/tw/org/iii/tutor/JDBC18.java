@@ -44,7 +44,7 @@ public class JDBC18 extends JFrame{
 	}
 	
 	private void delData() {
-		
+		myTable.delRow();
 	}
 	
 	public static void main(String[] args) {
