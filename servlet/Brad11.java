@@ -11,19 +11,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@WebServlet("/Brad10")
+@WebServlet("/Brad11")
 @MultipartConfig(
 		location = "C:\\Users\\USER\\eclipse-workspace\\MyWeb2\\src\\main\\webapp\\upload"
 		)
-public class Brad10 extends HttpServlet {
+public class Brad11 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Part upload = request.getPart("upload");
-		System.out.println("Size: " + upload.getSize());
-		System.out.println("Type:" + upload.getContentType());
-		System.out.println("fname: " + upload.getSubmittedFileName());
+	
+		Collection<Part> parts = request.getParts();
+		for (Part part : parts) {
+			System.out.println(part.getName());
+			System.out.println(part.getSubmittedFileName());
+			System.out.println(part.getContentType());
+			System.out.println(part.getSize());
+			System.out.println("----");
+			if (part.getName().equals("upload") && part.getSize() > 0) {
+				part.write(part.getSubmittedFileName());
+			}
+		}
 		
-		upload.write(upload.getSubmittedFileName());
-		
+	
 	}
 
 }
