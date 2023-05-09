@@ -15,6 +15,9 @@ public class Brad08 extends HttpServlet {
 		
 		String x = request.getParameter("x");
 		String y = request.getParameter("y");
+		String op = request.getParameter("op");
+		System.out.println(op);
+		
 		String result = "";
 		try {
 			int temp = Integer.parseInt(x) + Integer.parseInt(y);
@@ -28,7 +31,12 @@ public class Brad08 extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.append("<form>")
 			.append(String.format("<input name='x' value='%s' />\n", x))
-			.append("+\n")
+			.append("<select name='op'>")
+			.append("<option value='1'>+</option>")
+			.append("<option value='2'>-</option>")
+			.append("<option value='3'>x</option>")
+			.append("<option value='4'>/</option>")
+			.append("</select>\n")
 			.append(String.format("<input name='y' value='%s' />\n", y))
 			.append("<input type='submit' value='=' />\n")
 			.append(result)
